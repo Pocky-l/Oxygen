@@ -56,8 +56,8 @@ public class StateSpaceship {
 
         if (area.contains(pos)) return;
 
+        area.add(pos);
         if (!level.getBlockState(pos).is(OxygenTags.Blocks.SEALED)) {
-            area.add(pos);
             findArea(area, level, pos);
         }
 
