@@ -33,7 +33,7 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
     public static final int SLOT_OUTPUT_SINK = 2;
     public static final int SLOT_OUTPUT_SOURCE = 3;
 
-    private final TickLimiter LIMITER = new TickLimiter(200);
+    private final TickLimiter LIMITER = new TickLimiter(200, true);
 
     private final StateSpaceship STATE_SPACESHIP = new StateSpaceship();
 
@@ -46,8 +46,6 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
         super.tick();
         if (!this.getLevel().isClientSide()) {
 
-            LIMITER.inc();
-
             if (LIMITER.check()) {
                 areaCheck();
             }
@@ -59,6 +57,7 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
                     }
                 }
             }
+            LIMITER.inc();
         }
     }
 

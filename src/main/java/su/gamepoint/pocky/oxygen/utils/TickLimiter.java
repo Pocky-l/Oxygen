@@ -10,6 +10,14 @@ public class TickLimiter {
         this.limit = limit;
     }
 
+    public TickLimiter(int limit, boolean first) {
+        if (first) {
+            this.count = limit;
+        }
+        this.limit = limit;
+    }
+
+
     public void inc() {
         count++;
     }
