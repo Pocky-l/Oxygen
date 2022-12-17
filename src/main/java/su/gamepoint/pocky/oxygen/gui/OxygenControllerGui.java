@@ -6,8 +6,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.network.IContainerFactory;
 import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
 import su.gamepoint.pocky.oxygen.blocks.entities.tile.OxygenControllerTileEntity;
@@ -23,11 +21,6 @@ public class OxygenControllerGui {
         public GuiContainer(int id, Inventory inv, OxygenControllerTileEntity blockEntity) {
             super(ScreenRegister.OXYGEN_CONTROLLER_GUI.get(), id);
             this.blockEntity = blockEntity;
-            IItemHandlerModifiable internal = blockEntity.getItemHandler();
-            this.addSlot(new SlotItemHandler(internal, 0, 26, 22));
-            this.addSlot(new SlotItemHandler(internal, 2, 92, 52));
-            this.addSlot(new SlotItemHandler(internal, 1, 26, 52));
-            this.addSlot(new SlotItemHandler(internal, 3, 92, 22));
             ContainerHelper.addInventorySlots(this, inv, 8, 90, this::addSlot);
         }
 

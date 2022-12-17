@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.mrscauthd.beyond_earth.capabilities.energy.EnergyStorageBasic;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
@@ -17,7 +18,6 @@ import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeType;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
 import net.mrscauthd.beyond_earth.crafting.OxygenMakingRecipeAbstract;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
-import net.mrscauthd.beyond_earth.machines.tile.OxygenMakingBlockEntity;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemEnergyCommon;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemRegistry;
 import net.mrscauthd.beyond_earth.registries.EffectsRegistry;
@@ -28,7 +28,7 @@ import su.gamepoint.pocky.oxygen.utils.TickLimiter;
 
 import java.util.List;
 
-public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
+public class OxygenControllerTileEntity extends AbstractOxygenController {
 
     public static final int SLOT_OUTPUT_SINK = 2;
     public static final int SLOT_OUTPUT_SOURCE = 3;
@@ -42,8 +42,7 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void tickProcessing() {
         if (!this.getLevel().isClientSide()) {
 
             if (LIMITER.check()) {
@@ -62,8 +61,8 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
     }
 
     public boolean oxygenConsumption(int count) {
-        if (getOutputTank().getOxygenStored() >= count) {
-            getOutputTank().extractOxygen(count, false);
+        if (getOxygenTank().getOxygenStored() >= count) {
+            getOxygenTank().extractOxygen(count, false);
             return true;
         }
         return false;
@@ -96,16 +95,12 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
         return STATE_SPACESHIP.getStatus();
     }
 
-    @Override
     protected void drainSources() {
-        super.drainSources();
-        OxygenUtil.drainSource(this.getItemHandler(), this.getOutputSourceSlot(), this.getOutputTank(), this.getTransferPerTick());
+        OxygenUtil.drainSource(this.getItemHandler(), this.getOutputSourceSlot(), this.getOxygenTank(), this.getTransferPerTick());
     }
 
-    @Override
     protected void fillSinks() {
-        super.fillSinks();
-        OxygenUtil.fillSink(this.getItemHandler(), this.getOutputSinkSlot(), this.getOutputTank(), this.getTransferPerTick());
+        OxygenUtil.fillSink(this.getItemHandler(), this.getOutputSinkSlot(), this.getOxygenTank(), this.getTransferPerTick());
     }
 
     @Override
@@ -143,6 +138,12 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
     }
 
     @Override
+    protected void createFluidHandlers(NamedComponentRegistry<IFluidHandler> registry) {
+        super.createFluidHandlers(registry);
+        this.createOxygenTank(this.getOutputTankName());
+    }
+
+    @Override
     protected void createEnergyStorages(NamedComponentRegistry<IEnergyStorage> registry) {
         super.createEnergyStorages(registry);
         int capacity = 50000;
@@ -151,10 +152,13 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
     }
 
     @Override
+    public boolean hasSpaceInOutput() {
+        return false;
+    }
+
+    @Override
     protected int getInitialTankCapacity(ResourceLocation name) {
-        if (name.equals(this.getInputTankName())) {
-            return 2000;
-        } else if (name.equals(this.getOutputTankName())) {
+        if (name.equals(this.getOutputTankName())) {
             return 10000;
         } else {
             return super.getInitialTankCapacity(name);
@@ -202,7 +206,7 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
 
     public IOxygenStorage slotToOxygenTank(int slot) {
         if (slot == this.getOutputSourceSlot() || slot == this.getOutputSinkSlot()) {
-            return this.getOutputTank();
+            return this.getOxygenTank();
         } else {
             return super.slotToOxygenTank(slot);
         }
@@ -211,9 +215,8 @@ public class OxygenControllerTileEntity extends OxygenMakingBlockEntity {
     public ResourceLocation slotToTankName(int slot) {
         if (slot == this.getOutputSourceSlot() || slot == this.getOutputSinkSlot()) {
             return this.getOutputTankName();
-        } else {
-            return super.slotToTankName(slot);
         }
+        return null;
     }
 
     public int getOutputSourceSlot() {
