@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "oxygen:block/sealed_membrane/sealed_membrane"
+  }
+}

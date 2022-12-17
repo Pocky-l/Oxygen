@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "oxygen:sealed_plating"
+    "oxygen:sealed_plating",
+    "oxygen:sealed_glass",
+    "oxygen:sealed_membrane"
   ]
 }

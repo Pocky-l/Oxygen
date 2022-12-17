@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_post",
+  "textures": {
+    "pane": "oxygen:block/sealed_membrane/sealed_membrane",
+    "edge": "oxygen:block/sealed_membrane/sealed_membrane_top"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_side_alt"
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_noside"
+      }
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_noside_alt"
+      }
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": {
+        "model": "oxygen:block/sealed_membrane/sealed_membrane_noside",
+        "y": 270
+      }
+    }
+  ]
+}

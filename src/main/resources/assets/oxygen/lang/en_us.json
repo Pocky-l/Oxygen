@@ -4,5 +4,8 @@
   "container.oxygen.oxygen_controller": "Контроллер подачи кислорода",
 
   "block.oxygen.sealed_plating": "Герметичная обшивка",
+  "block.oxygen.sealed_glass": "Герметичное стекло",
+  "block.oxygen.sealed_membrane": "Герметичная плёнка",
+  
   "block.oxygen.oxygen_controller": "Контроллер подачи кислорода"
 }
