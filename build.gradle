@@ -94,10 +94,10 @@ dependencies {
     implementation fg.deobf("com.github.MrScautHD:Beyond-Earth:${project.be_version}")
 
     // Beyond Planets Core
-    implementation fg.deobf("com.therealm18studios.beyondplanetscore:Beyond-Planets-Core:${project.bpc_version}")
+    runtimeOnly fg.deobf("com.therealm18studios.beyondplanetscore:Beyond-Planets-Core:${project.bpc_version}")
 
     // Mekanism
-    implementation fg.deobf("com.github.mekanism.mekanism:Mekanism:${mekanism_version}")
+    runtimeOnly fg.deobf("com.github.mekanism.mekanism:Mekanism:${mekanism_version}")
 
     // JEI
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
