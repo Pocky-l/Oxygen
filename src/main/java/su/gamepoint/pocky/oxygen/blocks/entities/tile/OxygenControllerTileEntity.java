@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.mrscauthd.beyond_earth.capabilities.energy.EnergyStorageBasic;
-import net.mrscauthd.beyond_earth.capabilities.oxygen.IOxygenStorage;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeType;
 import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
@@ -37,6 +36,8 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
 
     private final StateSpaceship STATE_SPACESHIP = new StateSpaceship();
 
+    private boolean isActived = false;
+
     public OxygenControllerTileEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegister.OXYGEN_CONTROLLER.get(), pos, state);
     }
@@ -51,13 +52,21 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
 
             if (STATE_SPACESHIP.getStatus()) {
                 if (oxygenConsumption(1) && energyConsumption(10)) {
+                    isActived = true;
                     if (LIMITER.check()) {
                         fillRoomWithOxygen();
                     }
                 }
+            } else {
+                isActived = false;
             }
             LIMITER.inc();
         }
+    }
+
+    @Override
+    protected boolean canActivated() {
+        return isActived;
     }
 
     public boolean oxygenConsumption(int count) {
@@ -194,29 +203,6 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
     @Override
     protected int getInitialInventorySize() {
         return super.getInitialInventorySize() + 2;
-    }
-
-    public boolean isSourceSlot(int slot) {
-        return slot == this.getOutputSourceSlot() || super.isSourceSlot(slot);
-    }
-
-    public boolean isSinkSlot(int slot) {
-        return slot == this.getOutputSinkSlot() || super.isSinkSlot(slot);
-    }
-
-    public IOxygenStorage slotToOxygenTank(int slot) {
-        if (slot == this.getOutputSourceSlot() || slot == this.getOutputSinkSlot()) {
-            return this.getOxygenTank();
-        } else {
-            return super.slotToOxygenTank(slot);
-        }
-    }
-
-    public ResourceLocation slotToTankName(int slot) {
-        if (slot == this.getOutputSourceSlot() || slot == this.getOutputSinkSlot()) {
-            return this.getOutputTankName();
-        }
-        return null;
     }
 
     public int getOutputSourceSlot() {

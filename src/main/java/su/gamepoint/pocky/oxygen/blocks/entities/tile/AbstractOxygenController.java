@@ -19,7 +19,6 @@ import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeType;
 import net.mrscauthd.beyond_earth.crafting.OxygenMakingRecipeAbstract;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
-import net.mrscauthd.beyond_earth.inventory.StackCacher;
 import net.mrscauthd.beyond_earth.machines.tile.AbstractMachineBlockEntity;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
 
@@ -27,16 +26,8 @@ import java.util.List;
 
 public abstract class AbstractOxygenController extends AbstractMachineBlockEntity {
 
-    public static final int TANK_CAPACITY = 3000;
-    public static final int TRANSFER_PER_TICK = 256;
-    //public static final ResourceLocation TANK_INPUT = new ResourceLocation("beyond_earth", "input");
     public static final ResourceLocation TANK_OXYGEN = new ResourceLocation("beyond_earth", "output");
-    public static final int SLOT_INPUT_SOURCE = 0;
-    public static final int SLOT_INPUT_SINK = 1;
-    //private FluidTank inputTank;
     private OxygenStorage oxygenTank;
-    private StackCacher recipeCacher = new StackCacher();
-    private OxygenMakingRecipeAbstract cachedRecipe = null;
 
     public AbstractOxygenController(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -94,7 +85,6 @@ public abstract class AbstractOxygenController extends AbstractMachineBlockEntit
 
     protected void getSlotsForFace(Direction direction, List<Integer> slots) {
         super.getSlotsForFace(direction, slots);
-        slots.add(this.getInputSourceSlot());
     }
 
     public boolean hasSpaceInOutput(int oxygen) {
@@ -113,26 +103,6 @@ public abstract class AbstractOxygenController extends AbstractMachineBlockEntit
 
     public int getMaxStackSize() {
         return 1;
-    }
-
-    public int getInputSourceSlot() {
-        return 0;
-    }
-
-    public int getInputSinkSlot() {
-        return 1;
-    }
-
-    public boolean isSourceSlot(int slot) {
-        return slot == this.getInputSourceSlot();
-    }
-
-    public boolean isSinkSlot(int slot) {
-        return slot == this.getInputSinkSlot();
-    }
-
-    public IOxygenStorage slotToOxygenTank(int slot) {
-        return null;
     }
 
     public ResourceLocation getOutputTankName() {
