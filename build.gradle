@@ -97,7 +97,7 @@ dependencies {
     runtimeOnly fg.deobf("com.therealm18studios.beyondplanetscore:Beyond-Planets-Core:${project.bpc_version}")
 
     // Mekanism
-    runtimeOnly fg.deobf("com.github.mekanism.mekanism:Mekanism:${mekanism_version}")
+    implementation fg.deobf("com.github.mekanism.mekanism:Mekanism:${mekanism_version}")
 
     // JEI
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
