@@ -1,5 +1,5 @@
 {
-  "parent": "oxygen:block/oxygen_controller",
+  "parent": "oxygen:block/oxygen_controller/oxygen_controller",
   "display": {
     "thirdperson": {
       "rotation": [

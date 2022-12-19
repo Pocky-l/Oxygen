@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "oxygen:block/oxygen_controller/machine_back",
+    "up": "oxygen:block/oxygen_controller/machine_back",
+    "north": "oxygen:block/oxygen_controller/oxygen_controller_ac",
+    "east": "oxygen:block/oxygen_controller/machine_side",
+    "south": "oxygen:block/oxygen_controller/machine_side",
+    "west": "oxygen:block/oxygen_controller/machine_side",
+    "particle": "oxygen:block/oxygen_controller/machine_back"
+  }
+}
