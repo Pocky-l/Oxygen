@@ -13,7 +13,7 @@ public class StateSpaceship {
 
     private boolean status = false;
 
-    private final int AREA_LIMIT = 256;
+    private final int AREA_LIMIT = 2048;
 
     public void findAreaRoom(Level level, BlockPos startPos) {
         area.clear();
