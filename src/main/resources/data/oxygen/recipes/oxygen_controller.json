@@ -1,0 +1,24 @@
+{
+  "group": "oxygen",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "ABA",
+    "CAC"
+  ],
+  "key": {
+    "A": {
+      "item": "beyond_earth:engine_fan"
+    },
+    "B": {
+      "item": "beyond_earth:oxygen_bubble_distributor"
+    },
+    "C": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "oxygen:oxygen_controller",
+    "count": 1
+  }
+}

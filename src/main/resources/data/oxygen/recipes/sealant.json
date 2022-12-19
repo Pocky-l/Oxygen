@@ -1,0 +1,16 @@
+{
+  "group": "oxygen",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    }
+  ],
+  "result": {
+    "item": "oxygen:sealant",
+    "count": 4
+  }
+}

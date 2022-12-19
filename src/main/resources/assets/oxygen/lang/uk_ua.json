@@ -1,0 +1,13 @@
+{
+  "itemGroup.oxygen": "Oxygen Mod",
+
+  "container.oxygen.oxygen_controller": "Контролер подачі кисню",
+
+  "block.oxygen.sealed_plating": "Герметична обшивка",
+  "block.oxygen.sealed_glass": "Герметичне скло",
+  "block.oxygen.sealed_membrane": "Герметична плівка",
+  
+  "block.oxygen.oxygen_controller": "Контролер подачі кисню",
+
+  "item.oxygen.sealant": "Герметик"
+}

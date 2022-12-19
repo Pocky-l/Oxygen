@@ -1,11 +1,13 @@
 {
   "itemGroup.oxygen": "Oxygen Mod",
 
-  "container.oxygen.oxygen_controller": "Контроллер подачи кислорода",
+  "container.oxygen.oxygen_controller": "Oxygen controller",
 
-  "block.oxygen.sealed_plating": "Герметичная обшивка",
-  "block.oxygen.sealed_glass": "Герметичное стекло",
-  "block.oxygen.sealed_membrane": "Герметичная плёнка",
+  "block.oxygen.sealed_plating": "Sealed plating",
+  "block.oxygen.sealed_glass": "Sealed glass",
+  "block.oxygen.sealed_membrane": "Sealed membrane",
   
-  "block.oxygen.oxygen_controller": "Контроллер подачи кислорода"
+  "block.oxygen.oxygen_controller": "Oxygen controller",
+
+  "item.oxygen.sealant": "Sealant"
 }

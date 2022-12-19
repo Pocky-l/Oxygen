@@ -1,0 +1,21 @@
+{
+  "group": "oxygen",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BAB",
+    "A A",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "oxygen:sealant"
+    }
+  },
+  "result": {
+    "item": "oxygen:sealed_plating",
+    "count": 8
+  }
+}
