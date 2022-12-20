@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "oxygen:block/sealed_plating_magenta"
+  }
+}
