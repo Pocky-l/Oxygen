@@ -1,0 +1,21 @@
+{
+  "group": "oxygen",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ACA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "oxygen:sealed_plating"
+    },
+    "C": {
+      "tag": "forge:dyes/black"
+    }
+  },
+  "result": {
+    "item": "oxygen:sealed_plating_black",
+    "count": 8
+  }
+}
