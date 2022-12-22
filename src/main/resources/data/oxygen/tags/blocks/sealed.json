@@ -2,6 +2,22 @@
   "replace": false,
   "values": [
     "oxygen:sealed_plating",
+    "sealed_plating_black",
+    "sealed_plating_blue",
+    "sealed_plating_brown",
+    "sealed_plating_cyan",
+    "sealed_plating_gray",
+    "sealed_plating_green",
+    "sealed_plating_light_blue",
+    "sealed_plating_light_gray",
+    "sealed_plating_lime",
+    "sealed_plating_magenta",
+    "sealed_plating_orange",
+    "sealed_plating_pink",
+    "sealed_plating_purple",
+    "sealed_plating_red",
+    "sealed_plating_white",
+    "sealed_plating_yellow",
     "oxygen:sealed_glass",
     "oxygen:sealed_membrane"
   ]
