@@ -4,6 +4,23 @@
   "container.oxygen.oxygen_controller": "Контроллер подачи кислорода",
 
   "block.oxygen.sealed_plating": "Герметичная обшивка",
+  "block.oxygen.sealed_plating_black": "Чёрная герметичная обшивка",
+  "block.oxygen.sealed_plating_blue": "Синяя герметичная обшивка",
+  "block.oxygen.sealed_plating_brown": "Коричневая герметичная обшивка",
+  "block.oxygen.sealed_plating_cyan": "Бирюзовая герметичная обшивка",
+  "block.oxygen.sealed_plating_gray": "Серая герметичная обшивка",
+  "block.oxygen.sealed_plating_green": "Зелёная герметичная обшивка",
+  "block.oxygen.sealed_plating_light_blue": "Голубая герметичная обшивка",
+  "block.oxygen.sealed_plating_light_gray": "Светло-серая герметичная обшивка",
+  "block.oxygen.sealed_plating_lime": "Лаймовая герметичная обшивка",
+  "block.oxygen.sealed_plating_magenta": "Пурпурная герметичная обшивка",
+  "block.oxygen.sealed_plating_orange": "Оранжевая герметичная обшивка",
+  "block.oxygen.sealed_plating_pink": "Розовая герметичная обшивка",
+  "block.oxygen.sealed_plating_purple": "Фиолетовая герметичная обшивка",
+  "block.oxygen.sealed_plating_red": "Красная герметичная обшивка",
+  "block.oxygen.sealed_plating_white": "Белая герметичная обшивка",
+  "block.oxygen.sealed_plating_yellow": "Жёлтая герметичная обшивка",
+
   "block.oxygen.sealed_glass": "Герметичное стекло",
   "block.oxygen.sealed_membrane": "Герметичная плёнка",
   

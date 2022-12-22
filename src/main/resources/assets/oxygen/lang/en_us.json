@@ -4,6 +4,23 @@
   "container.oxygen.oxygen_controller": "Oxygen controller",
 
   "block.oxygen.sealed_plating": "Sealed plating",
+  "block.oxygen.sealed_plating_black": "Black sealed plating",
+  "block.oxygen.sealed_plating_blue": "Blue sealed plating",
+  "block.oxygen.sealed_plating_brown": "Brown sealed plating",
+  "block.oxygen.sealed_plating_cyan": "Cyan sealed plating",
+  "block.oxygen.sealed_plating_gray": "Gray sealed plating",
+  "block.oxygen.sealed_plating_green": "Green sealed plating",
+  "block.oxygen.sealed_plating_light_blue": "Light blue sealed plating",
+  "block.oxygen.sealed_plating_light_gray": "Light gray sealed plating",
+  "block.oxygen.sealed_plating_lime": "Lime sealed plating",
+  "block.oxygen.sealed_plating_magenta": "Magenta sealed plating",
+  "block.oxygen.sealed_plating_orange": "Orange sealed plating",
+  "block.oxygen.sealed_plating_pink": "Pink sealed plating",
+  "block.oxygen.sealed_plating_purple": "Purple sealed plating",
+  "block.oxygen.sealed_plating_red": "Red sealed plating",
+  "block.oxygen.sealed_plating_white": "White sealed plating",
+  "block.oxygen.sealed_plating_yellow": "Yellow sealed plating",
+
   "block.oxygen.sealed_glass": "Sealed glass",
   "block.oxygen.sealed_membrane": "Sealed membrane",
   
