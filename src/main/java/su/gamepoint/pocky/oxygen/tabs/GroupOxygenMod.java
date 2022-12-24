@@ -2,6 +2,7 @@ package su.gamepoint.pocky.oxygen.tabs;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import su.gamepoint.pocky.oxygen.registration.BlockRegister;
 
 public class GroupOxygenMod extends CreativeModeTab {
@@ -10,7 +11,7 @@ public class GroupOxygenMod extends CreativeModeTab {
     }
 
     @Override
-    public ItemStack makeIcon() {
+    public @NotNull ItemStack makeIcon() {
         return new ItemStack(BlockRegister.SEALED_PLATING_ITEM.get());
     }
 

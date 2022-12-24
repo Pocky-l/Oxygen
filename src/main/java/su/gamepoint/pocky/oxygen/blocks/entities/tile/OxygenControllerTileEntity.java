@@ -13,19 +13,18 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.mrscauthd.beyond_earth.capabilities.energy.EnergyStorageBasic;
 import net.mrscauthd.beyond_earth.capabilities.oxygen.OxygenUtil;
-import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeType;
-import net.mrscauthd.beyond_earth.crafting.BeyondEarthRecipeTypes;
-import net.mrscauthd.beyond_earth.crafting.OxygenMakingRecipeAbstract;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemEnergyCommon;
 import net.mrscauthd.beyond_earth.machines.tile.PowerSystemRegistry;
 import net.mrscauthd.beyond_earth.registries.EffectsRegistry;
+import org.jetbrains.annotations.NotNull;
 import su.gamepoint.pocky.oxygen.data.StateSpaceship;
 import su.gamepoint.pocky.oxygen.gui.OxygenControllerGui;
 import su.gamepoint.pocky.oxygen.registration.BlockEntityRegister;
 import su.gamepoint.pocky.oxygen.utils.TickLimiter;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OxygenControllerTileEntity extends AbstractOxygenController {
 
@@ -59,7 +58,7 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
     }
 
     private void clientTick() {
-        if (this.getLevel().isClientSide()) {
+        if (Objects.requireNonNull(this.getLevel()).isClientSide()) {
             if (CLIENT_LIMITER.check()) {
                 areaCheck();
             }
@@ -99,7 +98,7 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
     }
 
     public boolean energyConsumption(int count) {
-        if (getPrimaryEnergyStorage().getEnergyStored() >= count) {
+        if (Objects.requireNonNull(getPrimaryEnergyStorage()).getEnergyStored() >= count) {
             getPrimaryEnergyStorage().extractEnergy(count, false);
             return true;
         }
@@ -107,7 +106,7 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
     }
 
     public void fillRoomWithOxygen() {
-        for(Player player : this.getLevel().players()) {
+        for(Player player : Objects.requireNonNull(this.getLevel()).players()) {
             if (STATE_SPACESHIP.getArea().contains(player.getOnPos().above())) {
                 player.addEffect(new MobEffectInstance(
                         EffectsRegistry.OXYGEN_EFFECT.get(),
@@ -120,18 +119,11 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
         }
     }
 
-    public boolean areaCheck() {
+    public void areaCheck() {
         STATE_SPACESHIP.findAreaRoom(this.getLevel(), this.getBlockPos());
-        return STATE_SPACESHIP.getStatus();
     }
 
-    protected void drainSources() {
-        OxygenUtil.drainSource(this.getItemHandler(), this.getOutputSourceSlot(), this.getOxygenTank(), this.getTransferPerTick());
-    }
 
-    protected void fillSinks() {
-        OxygenUtil.fillSink(this.getItemHandler(), this.getOutputSinkSlot(), this.getOxygenTank(), this.getTransferPerTick());
-    }
 
     @Override
     protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
@@ -163,7 +155,7 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
     }
 
     @Override
-    public AbstractContainerMenu createMenu(int id, Inventory inventory) {
+    public @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
         return new OxygenControllerGui.GuiContainer(id, inventory, this);
     }
 
@@ -214,11 +206,6 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
 
     public int getBasePowerForOperation() {
         return 10;
-    }
-
-    @Override
-    public BeyondEarthRecipeType<? extends OxygenMakingRecipeAbstract> getRecipeType() {
-        return BeyondEarthRecipeTypes.OXYGEN_LOADING;
     }
 
     @Override

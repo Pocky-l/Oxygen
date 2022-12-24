@@ -8,6 +8,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.IContainerFactory;
 import net.mrscauthd.beyond_earth.guis.helper.ContainerHelper;
+import org.jetbrains.annotations.NotNull;
 import su.gamepoint.pocky.oxygen.blocks.entities.tile.OxygenControllerTileEntity;
 import su.gamepoint.pocky.oxygen.registration.ScreenRegister;
 
@@ -16,7 +17,7 @@ public class OxygenControllerGui {
     }
 
     public static class GuiContainer extends AbstractContainerMenu {
-        private OxygenControllerTileEntity blockEntity;
+        private final OxygenControllerTileEntity blockEntity;
 
         public GuiContainer(int id, Inventory inv, OxygenControllerTileEntity blockEntity) {
             super(ScreenRegister.OXYGEN_CONTROLLER_GUI.get(), id);
@@ -28,11 +29,11 @@ public class OxygenControllerGui {
             return this.blockEntity;
         }
 
-        public boolean stillValid(Player player) {
+        public boolean stillValid(@NotNull Player player) {
             return !this.getBlockEntity().isRemoved();
         }
 
-        public ItemStack quickMoveStack(Player playerIn, int index) {
+        public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
             return ContainerHelper.transferStackInSlot(this, playerIn, index, this.getBlockEntity(),
                     this::moveItemStackTo);
         }

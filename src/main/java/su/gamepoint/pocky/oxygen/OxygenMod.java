@@ -1,6 +1,5 @@
 package su.gamepoint.pocky.oxygen;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -10,7 +9,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
 import su.gamepoint.pocky.oxygen.registration.BlockEntityRegister;
 import su.gamepoint.pocky.oxygen.registration.BlockRegister;
 import su.gamepoint.pocky.oxygen.registration.ItemRegister;
@@ -22,8 +20,6 @@ import su.gamepoint.pocky.oxygen.tabs.GroupOxygenMod;
 public class OxygenMod {
 
     public static final CreativeModeTab CREATIVE_MODE_TAB = new GroupOxygenMod(OxygenMod.MODID);
-
-    private static final Logger LOGGER = LogUtils.getLogger();
 
     public static final String MODID = "oxygen";
 

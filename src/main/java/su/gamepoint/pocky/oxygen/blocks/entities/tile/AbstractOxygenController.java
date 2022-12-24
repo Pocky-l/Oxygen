@@ -21,6 +21,7 @@ import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.gauge.IGaugeValue;
 import net.mrscauthd.beyond_earth.machines.tile.AbstractMachineBlockEntity;
 import net.mrscauthd.beyond_earth.machines.tile.NamedComponentRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -61,15 +62,6 @@ public abstract class AbstractOxygenController extends AbstractMachineBlockEntit
         return 3000;
     }
 
-    protected FluidTank creatFluidTank(ResourceLocation name) {
-        return new FluidTank(this.getInitialTankCapacity(name)) {
-            protected void onContentsChanged() {
-                super.onContentsChanged();
-                AbstractOxygenController.this.setChanged();
-            }
-        };
-    }
-
     protected OxygenStorage createOxygenTank(ResourceLocation name) {
         return new OxygenStorage((oxygenStorage, oxygenDelta) -> AbstractOxygenController.this.setChanged(),
                 this.getInitialTankCapacity(name));
@@ -77,25 +69,18 @@ public abstract class AbstractOxygenController extends AbstractMachineBlockEntit
 
     public abstract void tickProcessing();
 
-    public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction facing) {
-        return CompatibleManager.MEKANISM.isLoaded() && capability == MekanismHelper.getGasHandlerCapability() ? LazyOptional.of(() -> {
-            return new OxygenStorageGasAdapter(this.getOxygenTank(), true, true);
-        }).cast() : super.getCapability(capability, facing);
+    public <T> @NotNull LazyOptional<T> getCapability(Capability<T> capability, Direction facing) {
+        return CompatibleManager.MEKANISM.isLoaded()
+                && capability == MekanismHelper.getGasHandlerCapability()
+                ? LazyOptional.of(
+                        () -> new OxygenStorageGasAdapter(this.getOxygenTank(), true, true)
+                )
+                .cast() : super.getCapability(capability, facing);
     }
 
     protected void getSlotsForFace(Direction direction, List<Integer> slots) {
         super.getSlotsForFace(direction, slots);
     }
-
-    public boolean hasSpaceInOutput(int oxygen) {
-        return this.hasSpaceInOutput(oxygen, this.getOxygenTank());
-    }
-
-    public boolean hasSpaceInOutput(int oxygen, IOxygenStorage storage) {
-        return oxygen + storage.getOxygenStored() <= storage.getMaxOxygenStored();
-    }
-
-    public abstract BeyondEarthRecipeType<? extends OxygenMakingRecipeAbstract> getRecipeType();
 
     protected int getInitialInventorySize() {
         return super.getInitialInventorySize() + 2;

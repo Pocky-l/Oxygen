@@ -16,8 +16,11 @@ import net.mrscauthd.beyond_earth.gauge.GaugeTextHelper;
 import net.mrscauthd.beyond_earth.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.guis.helper.GuiHelper;
 import net.mrscauthd.beyond_earth.utils.Rectangle2d;
+import org.jetbrains.annotations.NotNull;
 import su.gamepoint.pocky.oxygen.OxygenMod;
 import su.gamepoint.pocky.oxygen.blocks.entities.tile.OxygenControllerTileEntity;
+
+import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class OxygenControllerGuiWindow extends AbstractContainerScreen<OxygenControllerGui.GuiContainer> {
@@ -39,7 +42,7 @@ public class OxygenControllerGuiWindow extends AbstractContainerScreen<OxygenCon
     }
 
     @Override
-    public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+    public void render(@NotNull PoseStack ms, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);
         this.renderTooltip(ms, mouseX, mouseY);
@@ -71,7 +74,7 @@ public class OxygenControllerGuiWindow extends AbstractContainerScreen<OxygenCon
     }
 
     @Override
-    protected void renderBg(PoseStack ms, float p_97788_, int p_97789_, int p_97790_) {
+    protected void renderBg(@NotNull PoseStack ms, float p_97788_, int p_97789_, int p_97790_) {
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -79,7 +82,7 @@ public class OxygenControllerGuiWindow extends AbstractContainerScreen<OxygenCon
         GuiComponent.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 
         OxygenControllerTileEntity blockEntity = this.getMenu().getBlockEntity();
-        GuiHelper.drawEnergy(ms, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, blockEntity.getPrimaryEnergyStorage());
+        GuiHelper.drawEnergy(ms, this.leftPos + ENERGY_LEFT, this.topPos + ENERGY_TOP, Objects.requireNonNull(blockEntity.getPrimaryEnergyStorage()));
 
         GuiHelper.drawOxygenTank(ms, this.leftPos + TANK_OXYGEN_LEFT, this.topPos + TANK_OXYGEN_TOP, blockEntity.getOxygenTank());
     }

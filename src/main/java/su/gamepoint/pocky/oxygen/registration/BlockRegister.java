@@ -1,7 +1,6 @@
 package su.gamepoint.pocky.oxygen.registration;
 
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,16 +33,16 @@ public class BlockRegister {
 
     //items
     //public static final RegistryObject<Item> BLOCK_NAME_ITEM = block(BLOCK_NAME, OxygenMod.CREATIVE_MODE_TAB);
-    public static final RegistryObject<Item> SEALED_PLATING_ITEM = block(SEALED_PLATING, OxygenMod.CREATIVE_MODE_TAB);
-    public static final RegistryObject<Item> SEALED_GLASS_ITEM = block(SEALED_GLASS, OxygenMod.CREATIVE_MODE_TAB);
-    public static final RegistryObject<Item> SEALED_MEMBRANE_ITEM = block(SEALED_MEMBRANE, OxygenMod.CREATIVE_MODE_TAB);
+    public static final RegistryObject<Item> SEALED_PLATING_ITEM = block(SEALED_PLATING);
+    public static final RegistryObject<Item> SEALED_GLASS_ITEM = block(SEALED_GLASS);
+    public static final RegistryObject<Item> SEALED_MEMBRANE_ITEM = block(SEALED_MEMBRANE);
 
-    public static final RegistryObject<Item> OXYGEN_CONTROLLER_ITEM = block(OXYGEN_CONTROLLER, OxygenMod.CREATIVE_MODE_TAB);
+    public static final RegistryObject<Item> OXYGEN_CONTROLLER_ITEM = block(OXYGEN_CONTROLLER);
 
     public static final Map<String, RegistryObject<Item>> COLORED_ITEMS = createColoredItems();
 
-    private static RegistryObject<Item> block(RegistryObject<Block> block, CreativeModeTab tab) {
-        return REGISTRY_ITEM.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+    private static RegistryObject<Item> block(RegistryObject<Block> block) {
+        return REGISTRY_ITEM.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(OxygenMod.CREATIVE_MODE_TAB)));
     }
 
     private static Map<String, RegistryObject<Block>> createColoredBlocks() {
@@ -60,9 +59,7 @@ public class BlockRegister {
     private static Map<String, RegistryObject<Item>> createColoredItems() {
         var coloredItems = new HashMap<String, RegistryObject<Item>>();
 
-        COLORED_BLOCKS.forEach((k, e) -> {
-            coloredItems.put(k, block(e, OxygenMod.CREATIVE_MODE_TAB));
-        });
+        COLORED_BLOCKS.forEach((k, e) -> coloredItems.put(k, block(e)));
 
         return coloredItems;
     }
