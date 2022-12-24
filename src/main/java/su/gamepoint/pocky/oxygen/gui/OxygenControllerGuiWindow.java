@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,6 +29,8 @@ public class OxygenControllerGuiWindow extends AbstractContainerScreen<OxygenCon
     public static final int ENERGY_LEFT = 144;
     public static final int ENERGY_TOP = 21;
 
+    private final OxygenControllerTileEntity blockEntity = this.getMenu().getBlockEntity();
+
     public OxygenControllerGuiWindow(OxygenControllerGui.GuiContainer container, Inventory inventory, Component text) {
         super(container, inventory, text);
         this.imageWidth = 177;
@@ -41,13 +44,30 @@ public class OxygenControllerGuiWindow extends AbstractContainerScreen<OxygenCon
         super.render(ms, mouseX, mouseY, partialTicks);
         this.renderTooltip(ms, mouseX, mouseY);
 
-        OxygenControllerTileEntity blockEntity = this.getMenu().getBlockEntity();
-
         if (GuiHelper.isHover(this.getOxygenTankBounds(), mouseX, mouseY)) {
             this.renderTooltip(ms, GaugeTextHelper.getStorageText(GaugeValueHelper.getOxygen(blockEntity.getOxygenTank())).build(), mouseX, mouseY);
         } else if (GuiHelper.isHover(this.getEnergyBounds(), mouseX, mouseY)) {
             this.renderTooltip(ms, GaugeTextHelper.getStorageText(GaugeValueHelper.getEnergy(blockEntity)).build(), mouseX, mouseY);
         }
+
+        this.font.draw(ms,
+                new TranslatableComponent("oxygen.gui.message.station.size", blockEntity.getStateSpaceship().getSize()),
+                this.leftPos + 25,
+                this.topPos + 27,
+                3947580);
+
+        this.font.draw(ms,
+                new TranslatableComponent("oxygen.gui.message.station.power", OxygenControllerTileEntity.POWER_CONSUMPTION),
+                this.leftPos + 25,
+                this.topPos + 27 + 14,
+                3947580);
+
+        this.font.draw(ms,
+                new TranslatableComponent("oxygen.gui.message.station.oxygen", OxygenControllerTileEntity.OXYGEN_CONSUMPTION),
+                this.leftPos + 25,
+                this.topPos + 27 + 14 + 14,
+                3947580);
+
     }
 
     @Override

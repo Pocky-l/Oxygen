@@ -15,6 +15,8 @@ public class StateSpaceship {
 
     private final int AREA_LIMIT = 2048;
 
+    private Integer size = 0;
+
     public void findAreaRoom(Level level, BlockPos startPos) {
         area.clear();
         findArea(area, level, startPos);
@@ -23,6 +25,7 @@ public class StateSpaceship {
             area.clear();
             status = false;
         } else {
+            size = area.size();
             status = true;
         }
     }
@@ -61,5 +64,9 @@ public class StateSpaceship {
             findArea(area, level, pos);
         }
 
+    }
+
+    public Integer getSize() {
+        return size;
     }
 }

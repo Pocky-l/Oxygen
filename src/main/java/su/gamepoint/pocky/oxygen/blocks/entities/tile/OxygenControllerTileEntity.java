@@ -32,11 +32,16 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
     public static final int SLOT_OUTPUT_SINK = 2;
     public static final int SLOT_OUTPUT_SOURCE = 3;
 
-    private final TickLimiter LIMITER = new TickLimiter(200, true);
+    public static final int POWER_CONSUMPTION = 10;
+
+    public static final int OXYGEN_CONSUMPTION = 1;
+
+    private final TickLimiter SERVER_LIMITER = new TickLimiter(200, true);
+    private final TickLimiter CLIENT_LIMITER = new TickLimiter(200, true);
 
     private final StateSpaceship STATE_SPACESHIP = new StateSpaceship();
 
-    private boolean isActived = false;
+    private boolean isActive = false;
 
     public OxygenControllerTileEntity(BlockPos pos, BlockState state) {
         super(BlockEntityRegister.OXYGEN_CONTROLLER.get(), pos, state);
@@ -44,29 +49,45 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
 
     @Override
     public void tickProcessing() {
-        if (!this.getLevel().isClientSide()) {
+        serverTick();
+    }
 
-            if (LIMITER.check()) {
+    @Override
+    public void tick() {
+        super.tick();
+        clientTick();
+    }
+
+    private void clientTick() {
+        if (this.getLevel().isClientSide()) {
+            if (CLIENT_LIMITER.check()) {
                 areaCheck();
             }
-
-            if (STATE_SPACESHIP.getStatus()) {
-                if (oxygenConsumption(1) && energyConsumption(10)) {
-                    isActived = true;
-                    if (LIMITER.check()) {
-                        fillRoomWithOxygen();
-                    }
-                }
-            } else {
-                isActived = false;
-            }
-            LIMITER.inc();
+            CLIENT_LIMITER.inc();
         }
+    }
+
+    private void serverTick() {
+        if (SERVER_LIMITER.check()) {
+            areaCheck();
+        }
+
+        if (STATE_SPACESHIP.getStatus()) {
+            if (oxygenConsumption(OXYGEN_CONSUMPTION) && energyConsumption(POWER_CONSUMPTION)) {
+                isActive = true;
+                if (SERVER_LIMITER.check()) {
+                    fillRoomWithOxygen();
+                }
+            }
+        } else {
+            isActive = false;
+        }
+        SERVER_LIMITER.inc();
     }
 
     @Override
     protected boolean canActivated() {
-        return isActived;
+        return isActive;
     }
 
     public boolean oxygenConsumption(int count) {
@@ -211,5 +232,9 @@ public class OxygenControllerTileEntity extends AbstractOxygenController {
 
     public int getOutputSinkSlot() {
         return SLOT_OUTPUT_SINK;
+    }
+
+    public StateSpaceship getStateSpaceship() {
+        return STATE_SPACESHIP;
     }
 }

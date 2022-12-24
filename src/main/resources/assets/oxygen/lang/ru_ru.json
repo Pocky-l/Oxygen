@@ -3,6 +3,10 @@
 
   "container.oxygen.oxygen_controller": "Контроллер подачи кислорода",
 
+  "oxygen.gui.message.station.size": "Размер станции: %s Б",
+  "oxygen.gui.message.station.power": "Потребление FE/t: %s",
+  "oxygen.gui.message.station.oxygen": "Потребление O2/t: %s",
+
   "block.oxygen.sealed_plating": "Герметичная обшивка",
   "block.oxygen.sealed_plating_black": "Чёрная герметичная обшивка",
   "block.oxygen.sealed_plating_blue": "Синяя герметичная обшивка",

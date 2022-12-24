@@ -3,6 +3,10 @@
 
   "container.oxygen.oxygen_controller": "Oxygen controller",
 
+  "oxygen.gui.message.station.size": "Station size: %s B",
+  "oxygen.gui.message.station.power": "Consumption FE/t: %s",
+  "oxygen.gui.message.station.oxygen": "Consumption O2/t: %s",
+
   "block.oxygen.sealed_plating": "Sealed plating",
   "block.oxygen.sealed_plating_black": "Black sealed plating",
   "block.oxygen.sealed_plating_blue": "Blue sealed plating",
