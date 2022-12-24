@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oxygen:block/sealed_plating_gray"
+      "model": "oxygen:block/sealed_plating_light_gray"
     }
   }
 }
