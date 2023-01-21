@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "oxygen:block/sealed_plating_slab_light_blue"
+    },
+    "type=top": {
+      "model": "oxygen:block/sealed_plating_slab_light_blue_top"
+    },
+    "type=double": {
+      "model": "oxygen:block/sealed_plating_slab_light_blue_full"
+    }
+  }
+}

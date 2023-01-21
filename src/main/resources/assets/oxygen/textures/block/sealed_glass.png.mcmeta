@@ -1,0 +1,11 @@
+{
+    "ctm": {
+        "ctm_version":1,
+        "type":"CTM",
+        "layer":"CUTOUT",
+        "textures":
+            [
+                "oxygen:block/sealed_glass-ctm"
+            ]
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "oxygen:block/sealed_plating_blue",
+    "top": "oxygen:block/sealed_plating_blue",
+    "side": "oxygen:block/sealed_plating_blue"
+  }
+}

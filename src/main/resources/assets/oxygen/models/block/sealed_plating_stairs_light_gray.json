@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "oxygen:block/sealed_plating_light_gray",
+    "top": "oxygen:block/sealed_plating_light_gray",
+    "side": "oxygen:block/sealed_plating_light_gray"
+  }
+}

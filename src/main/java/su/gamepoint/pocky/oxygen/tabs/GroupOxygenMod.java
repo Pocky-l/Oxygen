@@ -12,7 +12,7 @@ public class GroupOxygenMod extends CreativeModeTab {
 
     @Override
     public @NotNull ItemStack makeIcon() {
-        return new ItemStack(BlockRegister.SEALED_PLATING_ITEM.get());
+        return new ItemStack(BlockRegister.OXYGEN_CONTROLLER_ITEM.get());
     }
 
     @Override
