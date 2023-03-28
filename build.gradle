@@ -17,7 +17,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.18.2-0.3-beta'
+version = '1.18.2-0.4-beta'
 group = 'su.gamepoint.pocky.oxygen'
 archivesBaseName = 'Oxygen'
 
